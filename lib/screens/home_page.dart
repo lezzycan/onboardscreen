@@ -4,7 +4,7 @@ import '../data/data.dart';
 
 import '../utilities/constants.dart';
 
-OnboardingController controller = OnboardingController();
+OnboardingController _controller = OnboardingController();
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,20 +26,20 @@ class _HomePageState extends State<HomePage> {
               controller: pageController,
               onPageChanged: (index) {
                 setState(() {
-                  controller.selectedPageIndex = index;
+                  _controller.selectedPageIndex = index;
                 });
               },
-              itemCount: controller.getPagesLength(),
+              itemCount: _controller.getPagesLength(),
               itemBuilder: (context, index) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(controller.getImageAsset(index)),
+                    Image.asset(_controller.getImageAsset(index)),
                     const SizedBox(
                       height: 20.0,
                     ),
                     Text(
-                      controller.getTitle(index),
+                      _controller.getTitle(index),
                       style: ktitleStyle,
                       textAlign: TextAlign.center,
                     ),
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Text(
-                        controller.getDescription(index),
+                        _controller.getDescription(index),
                         style: kdescriptionStyle,
                         textAlign: TextAlign.center,
                       ),
@@ -63,14 +63,14 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                controller.getPagesLength(),
+                _controller.getPagesLength(),
                 (index) => Container(
 
                   margin: const EdgeInsets.all(4.0),
-                  width: controller.selectedPageIndex == index ? 20 : 12,
+                  width: _controller.selectedPageIndex == index ? 20 : 12,
                   height: 12,
                   decoration: BoxDecoration(
-                    color: controller.selectedPageIndex == index
+                    color: _controller.selectedPageIndex == index
                         ? Colors.white
                         : Colors.grey,
                     borderRadius: BorderRadius.circular(20),
@@ -85,8 +85,8 @@ class _HomePageState extends State<HomePage> {
             right: 50.0,
             child: TextButton(
               onPressed: () {
-                if (controller.selectedPageIndex ==
-                    controller.getPagesLength() - 1) {
+                if (_controller.selectedPageIndex ==
+                    _controller.getPagesLength() - 1) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -109,8 +109,8 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0)),
                 child: Text(
-                  controller.selectedPageIndex ==
-                          controller.getPagesLength() - 1
+                  _controller.selectedPageIndex ==
+                          _controller.getPagesLength() - 1
                       ? "GET STARTED"
                       : "Next",
                   style: knextButtonStyle,
@@ -132,8 +132,8 @@ class _HomePageState extends State<HomePage> {
               },
               child: SafeArea(
                 child: Text(
-                  controller.selectedPageIndex ==
-                          controller.getPagesLength() - 1
+                  _controller.selectedPageIndex ==
+                          _controller.getPagesLength() - 1
                       ? " "
                       : "SKIP",
                   style: kskipStyle,
