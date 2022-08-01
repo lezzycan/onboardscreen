@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
         children: [
@@ -101,19 +102,22 @@ class _HomePageState extends State<HomePage> {
                       curve: Curves.ease);
                 }
               },
-              child: Container(
-                alignment: Alignment.center,
-                width: 450.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Text(
-                  _controller.selectedPageIndex ==
-                          _controller.getPagesLength() - 1
-                      ? "GET STARTED"
-                      : "Next",
-                  style: knextButtonStyle,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Text(
+                    _controller.selectedPageIndex ==
+                            _controller.getPagesLength() - 1
+                        ? "GET STARTED"
+                        : "Next",
+                    style: knextButtonStyle,
+                  ),
                 ),
               ),
             ),
